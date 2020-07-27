@@ -16,7 +16,7 @@ const App = () => {
     <div>
       {grid.map((el) => {
         return (
-          <div>
+          <div style={{display: "flex"}}>
             {el.map((el) => {
               return (
                 <div
