@@ -8,7 +8,7 @@ const App = () => {
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
-      rows.push(Array.from(Array(numCols), () => 1));
+      rows.push(Array.from(Array(numCols), () => 0));
     }
     return rows;
   });
@@ -30,8 +30,8 @@ const App = () => {
                   style={{
                     backgroundColor: color,
                     border: "1px solid black",
-                    width: "25px",
-                    height: "25px",
+                    width: "10px",
+                    height: "10px",
                   }}
                 ></div>
               );
