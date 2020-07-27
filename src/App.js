@@ -8,13 +8,32 @@ const App = () => {
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
-      rows.push(Array.from(Array(numCols), () => 0))
+      rows.push(Array.from(Array(numCols), () => 0));
     }
-    return rows
+    return rows;
   });
-  return <div>
-    
-  </div>;
-}
+  return (
+    <div>
+      {grid.map((el) => {
+        return (
+          <div>
+            {el.map((el) => {
+              return (
+                <div
+                  style={{
+                    backgroundColor: "red",
+                    border: "1px solid black",
+                    width: "25px",
+                    height: "25px",
+                  }}
+                ></div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
 export default App;
