@@ -18,6 +18,9 @@ const App = () => {
       {grid.map((rows, i) =>
         rows.map((cols, j) => (
           <div
+          onClick={() => {
+            
+          }}
             style={{
               width: 20,
               height: 20,
