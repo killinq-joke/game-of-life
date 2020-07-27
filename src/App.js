@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import {produce} from "immer"
 
 const numRows = 50;
 const numCols = 50;
@@ -19,7 +20,16 @@ const App = () => {
         rows.map((cols, j) => (
           <div
           onClick={() => {
+            const newGrid = produce(grid, gridCopy => {
+              if(gridCopy[i][j]) {
+                gridCopy[i][j] = 0
+              } else {
+                gridCopy[i][j] = 1 
+              }
+             
+            })
             
+            setGrid(newGrid)
           }}
             style={{
               width: 20,
