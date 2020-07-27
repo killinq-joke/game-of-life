@@ -12,33 +12,21 @@ const App = () => {
     }
     return rows;
   });
-  // console.log(grid)
+  console.log(grid);
   return (
-    <div>
-      {grid.map((el) => {
-        return (
-          <div style={{ display: "flex" }}>
-            {el.map((el) => {
-              let color
-              if(el === 0) { 
-                color = "white"
-              } else {
-                color = "black"
-              }
-              return (
-                <div
-                  style={{
-                    backgroundColor: color,
-                    border: "1px solid black",
-                    width: "10px",
-                    height: "10px",
-                  }}
-                ></div>
-              );
-            })}
-          </div>
-        );
-      })}
+    <div style={{display: "grid", gridTemplateColumns:`repeat(${numCols}, 20px)`}}>
+      {grid.map((rows, i) =>
+        rows.map((cols, j) => (
+          <div
+            style={{
+              width: 20,
+              height: 20,
+              backgroundColor: grid[i][j] ? "black" : undefined,
+              border: "1px solid black",
+            }}
+          />
+        ))
+      )}
     </div>
   );
 };
