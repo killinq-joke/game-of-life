@@ -1,11 +1,19 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+const numRows = 50;
+const numCols = 50;
+
+const App = () => {
+  const [grid, setGrid] = useState(() => {
+    const rows = [];
+    for (let i = 0; i < numRows; i++) {
+      rows.push(Array(  ))
+    }
+    return rows
+  });
+  console.log(grid)
+  return <div></div>;
 }
 
 export default App;
