@@ -111,12 +111,28 @@ const App = () => {
         >
           clear
         </button>
+        <button
+          onClick={() => {
+            setGrid(() => {
+              const rows = [];
+              for (let i = 0; i < numRows; i++) {
+                rows.push(
+                  Array.from(Array(numCols), () =>
+                    Math.floor(Math.random() * Math.floor(2))
+                  )
+                );
+              }
+              return rows;
+            });
+          }}
+        >
+          randomize
+        </button>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-              setNumCols(newCols);
-              setNumRows(newRows);
-              
+            setNumCols(newCols);
+            setNumRows(newRows);
           }}
         >
           <label>
@@ -128,12 +144,12 @@ const App = () => {
                 console.log(e.target.value);
                 setNewRows(Number(e.target.value));
                 setGrid(() => {
-                const rows = [];
-                for (let i = 0; i < newRows; i++) {
-                  rows.push(Array.from(Array(numCols), () => 0));
-                }
-                return rows;
-              }); 
+                  const rows = [];
+                  for (let i = 0; i < newRows; i++) {
+                    rows.push(Array.from(Array(numCols), () => 0));
+                  }
+                  return rows;
+                });
               }}
               value={newRows}
             />
@@ -147,13 +163,13 @@ const App = () => {
                 console.log(e.target.value);
                 setNewCols(Number(e.target.value));
                 setGrid(() => {
-                const rows = [];
-                for (let i = 0; i < numRows; i++) {
-                  rows.push(Array.from(Array(newCols), () => 0));
-                }
-                console.log(rows)
-                return rows;
-              }); 
+                  const rows = [];
+                  for (let i = 0; i < numRows; i++) {
+                    rows.push(Array.from(Array(newCols), () => 0));
+                  }
+                  console.log(rows);
+                  return rows;
+                });
               }}
               value={newCols}
             />
