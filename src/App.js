@@ -2,10 +2,14 @@ import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import { produce } from "immer";
 
-const numRows = 50;
-const numCols = 50;
+;
 
 const App = () => {
+const numRows = 50;
+const numCols = 50;
+const [newRows, setNewRows] = useState(0);
+const [newCols, setNewCols] = useState(0)
+
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
@@ -121,7 +125,9 @@ const App = () => {
               type="number"
               onChange={(e) => {
                 console.log(e.target.value);
+                setNewRows(e.target.value)
               }}
+              value={newRows}
             />
           </label>
           <label>
@@ -132,10 +138,11 @@ const App = () => {
               onChange={(e) => {
                 console.log(e.target.value);
               }}
+              value={newCols}
             />
           </label>
 
-          <button></button>
+          <button>submit</button>
         </form>
       </div>
     </div>
