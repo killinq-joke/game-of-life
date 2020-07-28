@@ -96,6 +96,19 @@ const App = () => {
         >
           {running ? "stop" : "start"}
         </button>
+        <button
+          onClick={() => {
+            setGrid(() => {
+              const rows = [];
+              for (let i = 0; i < numRows; i++) {
+                rows.push(Array.from(Array(numCols), () => 0));
+              }
+              return rows;
+            });
+          }}
+        >
+          clear
+        </button>
       </div>
     </div>
   );
