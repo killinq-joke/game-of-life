@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import { produce } from "immer";
 
@@ -6,7 +6,6 @@ const numRows = 50;
 const numCols = 50;
 
 const App = () => {
-  const [running, setRunning] = useState(false)
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRows; i++) {
@@ -14,19 +13,49 @@ const App = () => {
     }
     return rows;
   });
-  const start = () => {
-    for (let i = 0; i < numRows; i++) {
-      let count = 0;
-      grid[i - 1][j] ? count++ : undefined;
-      grid[i + 1][j] ? count++ : undefined;
-      grid[i][j + 1] ? count++ : undefined;
-      grid[i][j - 1] ? count++ : undefined;
-      grid[i][j] && (count === 2 || count === 3)
-        ? (grid[i][j] = 1)
-        : (grid[i][j] = 0);
+
+  const [running, setRunning] = useState(false);
+
+  const runRef = useRef(running);
+  runRef.current = running;
+  const operations = [
+    [0, 1],
+    [0, -1],
+    [1, -1],
+    [-1, 1],
+    [1, 1],
+    [-1, -1],
+    [1, 0],
+    [-1, 0],
+  ];
+  const runSimulation = useCallback(() => {
+    if (!runRef.current) {
+      return;
     }
-  };
-  console.log(grid);
+    setGrid((g) => {
+      return produce(g, (gridCopy) => {
+        for (let i = 0; i < numRows; i++) {
+          for (let j = 0; j < numCols; j++) {
+            let count = 0;
+            operations.forEach(([x, y]) => {
+              const newI = x + i;
+              const newJ = y + j;
+              if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
+                count += g[newI][newJ];
+              }
+            });
+            if (count < 2 || count > 3) {
+              gridCopy[i][j] = 0;
+            } else if (grid[i][j] === 0 && count === 3) {
+              gridCopy[i][j] = 1;
+            }
+          }
+        }
+      });
+    });
+    setTimeout(runSimulation, 1000);
+  }, []);
+
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -56,9 +85,17 @@ const App = () => {
         )}
       </div>
       <div>
-        <button onClick={() => {
-          setRunning(!running)
-        }}>{running ? "stop" : "start"}</button>
+        <button
+          onClick={() => {
+            setRunning(!running);
+            if (!running) {
+              runRef.current = true;
+              runSimulation();
+            }
+          }}
+        >
+          {running ? "stop" : "start"}
+        </button>
       </div>
     </div>
   );
