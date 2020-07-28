@@ -2,13 +2,11 @@ import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import { produce } from "immer";
 
-;
-
 const App = () => {
-const numRows = 50;
-const numCols = 50;
-const [newRows, setNewRows] = useState(0);
-const [newCols, setNewCols] = useState(0)
+  const [numRows, setNumRows] = useState(20);
+  const [numCols, setNumCols] = useState(50);
+  const [newRows, setNewRows] = useState(20);
+  const [newCols, setNewCols] = useState(50);
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -61,7 +59,7 @@ const [newCols, setNewCols] = useState(0)
   }, []);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div>
       <div
         style={{
           display: "grid",
@@ -116,6 +114,9 @@ const [newCols, setNewCols] = useState(0)
         <form
           onSubmit={(e) => {
             e.preventDefault();
+              setNumCols(newCols);
+              setNumRows(newRows);
+              
           }}
         >
           <label>
@@ -125,7 +126,14 @@ const [newCols, setNewCols] = useState(0)
               type="number"
               onChange={(e) => {
                 console.log(e.target.value);
-                setNewRows(e.target.value)
+                setNewRows(Number(e.target.value));
+                setGrid(() => {
+                const rows = [];
+                for (let i = 0; i < newRows; i++) {
+                  rows.push(Array.from(Array(numCols), () => 0));
+                }
+                return rows;
+              }); 
               }}
               value={newRows}
             />
@@ -137,6 +145,15 @@ const [newCols, setNewCols] = useState(0)
               type="number"
               onChange={(e) => {
                 console.log(e.target.value);
+                setNewCols(Number(e.target.value));
+                setGrid(() => {
+                const rows = [];
+                for (let i = 0; i < numRows; i++) {
+                  rows.push(Array.from(Array(newCols), () => 0));
+                }
+                console.log(rows)
+                return rows;
+              }); 
               }}
               value={newCols}
             />
