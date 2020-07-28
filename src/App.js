@@ -109,6 +109,34 @@ const App = () => {
         >
           clear
         </button>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <label>
+            <p>Rows</p>
+
+            <input
+              type="number"
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
+            />
+          </label>
+          <label>
+            <p>Columns</p>
+
+            <input
+              type="number"
+              onChange={(e) => {
+                console.log(e.target.value);
+              }}
+            />
+          </label>
+
+          <button></button>
+        </form>
       </div>
     </div>
   );
