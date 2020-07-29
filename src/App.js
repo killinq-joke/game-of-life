@@ -9,7 +9,7 @@ const App = () => {
   const [newRows, setNewRows] = useState(20);
   const [newCols, setNewCols] = useState(50);
   const [speed, setSpeed] = useState(1);
-  const [color, setColor] = useState("#fff")
+  const [color, setColor] = useState("black");
 
   const handleChangeComplete = (color) => {
     setColor(color.hex);
@@ -115,6 +115,7 @@ const App = () => {
               }
               return rows;
             });
+            setRunning(false);
           }}
         >
           clear
@@ -132,6 +133,7 @@ const App = () => {
               }
               return rows;
             });
+            setRunning(false);
           }}
         >
           randomize
