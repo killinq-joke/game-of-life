@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import { produce } from "immer";
+import { SketchPicker } from "react-color";
 
 const App = () => {
   const [numRows, setNumRows] = useState(20);
@@ -8,6 +9,11 @@ const App = () => {
   const [newRows, setNewRows] = useState(20);
   const [newCols, setNewCols] = useState(50);
   const [speed, setSpeed] = useState(1);
+  const [color, setColor] = useState("#fff")
+
+  const handleChangeComplete = (color) => {
+    setColor(color.hex);
+  };
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -65,7 +71,8 @@ const App = () => {
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${numCols}, 20px)`,
-          padding: 20
+          padding: 20,
+          backgroundColor: color
         }}
       >
         {grid.map((rows, i) =>
@@ -132,16 +139,16 @@ const App = () => {
         </button>
         <form
           onSubmit={(e) => {
-            e.preventDefault()
-            setNumRows(newRows)
-            setNumCols(newCols)
+            e.preventDefault();
+            setNumRows(newRows);
+            setNumCols(newCols);
             setGrid(() => {
               const rows = [];
               for (let i = 0; i < newRows; i++) {
                 rows.push(Array.from(Array(newCols), () => 0));
               }
-              console.log(rows)
-              return rows
+              console.log(rows);
+              return rows;
             });
             setRunning(!running);
           }}
@@ -181,6 +188,7 @@ const App = () => {
             type="number"
           />
         </label>
+        <SketchPicker color={color} onChange={handleChangeComplete} />
       </div>
     </div>
   );
