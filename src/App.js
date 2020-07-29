@@ -7,6 +7,7 @@ const App = () => {
   const [numCols, setNumCols] = useState(50);
   const [newRows, setNewRows] = useState(20);
   const [newCols, setNewCols] = useState(50);
+  const [speed, setSpeed] = useState(1);
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
@@ -55,8 +56,8 @@ const App = () => {
         }
       });
     });
-    setTimeout(runSimulation, 1000);
-  }, []);
+    setTimeout(runSimulation, 1000 / speed);
+  }, [numRows]);
 
   return (
     <div>
@@ -64,6 +65,7 @@ const App = () => {
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${numCols}, 20px)`,
+          padding: 20
         }}
       >
         {grid.map((rows, i) =>
@@ -130,9 +132,17 @@ const App = () => {
         </button>
         <form
           onSubmit={(e) => {
-            e.preventDefault();
-            setNumCols(newCols);
-            setNumRows(newRows);
+            e.preventDefault()
+            setNumRows(newRows)
+            setNumCols(newCols)
+            setGrid(() => {
+              const rows = [];
+              for (let i = 0; i < newRows; i++) {
+                rows.push(Array.from(Array(newCols), () => 0));
+              }
+              console.log(rows)
+              return rows
+            });
           }}
         >
           <label>
@@ -143,13 +153,13 @@ const App = () => {
               onChange={(e) => {
                 console.log(e.target.value);
                 setNewRows(Number(e.target.value));
-                setGrid(() => {
-                  const rows = [];
-                  for (let i = 0; i < newRows; i++) {
-                    rows.push(Array.from(Array(numCols), () => 0));
-                  }
-                  return rows;
-                });
+                //   setGrid(() => {
+                //     const rows = [];
+                //     for (let i = 0; i < newRows; i++) {
+                //       rows.push(Array.from(Array(numCols), () => 0));
+                //     }
+                //     return rows;
+                //   });
               }}
               value={newRows}
             />
@@ -162,14 +172,14 @@ const App = () => {
               onChange={(e) => {
                 console.log(e.target.value);
                 setNewCols(Number(e.target.value));
-                setGrid(() => {
-                  const rows = [];
-                  for (let i = 0; i < numRows; i++) {
-                    rows.push(Array.from(Array(newCols), () => 0));
-                  }
-                  console.log(rows);
-                  return rows;
-                });
+                //   setGrid(() => {
+                //     const rows = [];
+                //     for (let i = 0; i < numRows; i++) {
+                //       rows.push(Array.from(Array(newCols), () => 0));
+                //     }
+                //     console.log(rows);
+                //     return rows;
+                //   });
               }}
               value={newCols}
             />
@@ -177,6 +187,14 @@ const App = () => {
 
           <button>submit</button>
         </form>
+        <label>
+          speed
+          <input
+            onChange={(e) => setSpeed(Number(e.target.value))}
+            value={speed}
+            type="number"
+          />
+        </label>
       </div>
     </div>
   );
