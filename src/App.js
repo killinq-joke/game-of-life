@@ -38,6 +38,7 @@ const App = () => {
     [-1, 0],
   ];
   const runSimulation = useCallback(() => {
+    console.log(speed)
     if (!runRef.current) {
       return;
     }
@@ -101,6 +102,8 @@ const App = () => {
             if (!running) {
               runRef.current = true;
               runSimulation();
+            } else {
+              runRef.current = false
             }
           }}
         >
