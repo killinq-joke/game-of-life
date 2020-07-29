@@ -4,9 +4,9 @@ import { produce } from "immer";
 import { SketchPicker } from "react-color";
 
 const App = () => {
-  const [numRows, setNumRows] = useState(20);
+  const [numRows, setNumRows] = useState(25);
   const [numCols, setNumCols] = useState(50);
-  const [newRows, setNewRows] = useState(20);
+  const [newRows, setNewRows] = useState(25);
   const [newCols, setNewCols] = useState(50);
   const [speed, setSpeed] = useState(1);
   const [color, setColor] = useState("black");
@@ -37,6 +37,7 @@ const App = () => {
     [1, 0],
     [-1, 0],
   ];
+
   const runSimulation = useCallback(() => {
     console.log(speed)
     if (!runRef.current) {
