@@ -72,7 +72,6 @@ const App = () => {
           display: "grid",
           gridTemplateColumns: `repeat(${numCols}, 20px)`,
           padding: 20,
-          backgroundColor: color
         }}
       >
         {grid.map((rows, i) =>
@@ -88,7 +87,7 @@ const App = () => {
               style={{
                 width: 20,
                 height: 20,
-                backgroundColor: grid[i][j] ? "black" : undefined,
+                backgroundColor: grid[i][j] ? color : undefined,
                 border: "1px solid black",
               }}
             />
