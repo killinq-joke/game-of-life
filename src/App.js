@@ -143,6 +143,7 @@ const App = () => {
               console.log(rows)
               return rows
             });
+            setRunning(!running);
           }}
         >
           <label>
@@ -153,13 +154,6 @@ const App = () => {
               onChange={(e) => {
                 console.log(e.target.value);
                 setNewRows(Number(e.target.value));
-                //   setGrid(() => {
-                //     const rows = [];
-                //     for (let i = 0; i < newRows; i++) {
-                //       rows.push(Array.from(Array(numCols), () => 0));
-                //     }
-                //     return rows;
-                //   });
               }}
               value={newRows}
             />
@@ -172,14 +166,6 @@ const App = () => {
               onChange={(e) => {
                 console.log(e.target.value);
                 setNewCols(Number(e.target.value));
-                //   setGrid(() => {
-                //     const rows = [];
-                //     for (let i = 0; i < numRows; i++) {
-                //       rows.push(Array.from(Array(newCols), () => 0));
-                //     }
-                //     console.log(rows);
-                //     return rows;
-                //   });
               }}
               value={newCols}
             />
