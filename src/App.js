@@ -65,7 +65,7 @@ const App = () => {
         }
       });
     });
-    setTimeout(runSimulation, 5000 / speed);
+    setTimeout(runSimulation, 100 / speed);
   }, [numRows, speed]);
 
   return (
@@ -75,6 +75,7 @@ const App = () => {
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
+          marginTop: 20
         }}
       >
         <div>
@@ -168,17 +169,17 @@ const App = () => {
 
           <button>submit</button>
         </form>
-        <label>
+        {/* <label>
           speed
           <input
             onChange={(e) => setSpeed(Number(e.target.value))}
             value={speed}
             type="number"
           />
-        </label>
+        </label> */}
         <CirclePicker color={color} onChange={handleChangeComplete} />
       </div>
-      <div style={{display: "flex", justifyContent: "center", marginBottom: 100}}>
+      <div style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
         <div
         style={{
           display: "grid",
