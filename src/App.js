@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import "./App.css";
 import { produce } from "immer";
-import { SketchPicker } from "react-color";
+import { CirclePicker } from "react-color";
 
 const App = () => {
   const [numRows, setNumRows] = useState(25);
@@ -176,9 +176,10 @@ const App = () => {
             type="number"
           />
         </label>
-        <SketchPicker color={color} onChange={handleChangeComplete} />
+        <CirclePicker color={color} onChange={handleChangeComplete} />
       </div>
-      <div
+      <div style={{display: "flex", justifyContent: "center", marginBottom: 100}}>
+        <div
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${numCols}, 20px)`,
@@ -204,6 +205,8 @@ const App = () => {
           ))
         )}
       </div>
+      </div>
+      
     </div>
   );
 };
