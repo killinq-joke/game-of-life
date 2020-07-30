@@ -17,7 +17,7 @@ const App = () => {
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
-    for (let i = 0; i < numRows; i++) {
+    for (let i = 0; i < numRows; i++) { //for each rows make an array full of zeros length of columns
       rows.push(Array.from(Array(numCols), () => 0));
     }
     return rows;
