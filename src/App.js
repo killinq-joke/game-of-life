@@ -17,7 +17,8 @@ const App = () => {
 
   const [grid, setGrid] = useState(() => {
     const rows = [];
-    for (let i = 0; i < numRows; i++) { //for each rows make an array full of zeros length of columns
+    for (let i = 0; i < numRows; i++) {
+      //for each rows make an array full of zeros length of columns
       rows.push(Array.from(Array(numCols), () => 0));
     }
     return rows;
@@ -39,7 +40,7 @@ const App = () => {
   ];
 
   const runSimulation = useCallback(() => {
-    console.log(speed)
+    console.log(speed);
     if (!runRef.current) {
       return;
     }
@@ -71,77 +72,59 @@ const App = () => {
     <div>
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 20px)`,
-          padding: 20,
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
         }}
       >
-        {grid.map((rows, i) =>
-          rows.map((cols, j) => (
-            <div
-              onClick={() => {
-                const newGrid = produce(grid, (gridCopy) => {
-                  gridCopy[i][j] = gridCopy[i][j] ? 0 : 1;
-                });
+        <div>
+          <button
+            onClick={() => {
+              setRunning(!running);
+              if (!running) {
+                runRef.current = true;
+                runSimulation();
+              } else {
+                runRef.current = false;
+              }
+            }}
+          >
+            {running ? "stop" : "start"}
+          </button>
+          <button
+            onClick={() => {
+              setGrid(() => {
+                const rows = [];
+                for(let i = 0; i < numRows; i++) {
+                  rows.push(Array.from(Array(numCols), () => 0));
+                }
+                return rows;
+              });
+              setRunning(false);
+            }}
+          >
+            clear
+          </button>
+          <button
+            onClick={() => {
+              setGrid(() => {
+                const rows = [];
+                for (let i = 0; i < numRows; i++) {
+                  rows.push(
+                    Array.from(Array(numCols), () =>
+                      Math.floor(Math.random() * Math.floor(2))
+                    )
+                  );
+                }
+                return rows;
+              });
+              setRunning(false);
+            }}
+          >
+            randomize
+          </button>
+        </div>
 
-                setGrid(newGrid);
-              }}
-              style={{
-                width: 20,
-                height: 20,
-                backgroundColor: grid[i][j] ? color : undefined,
-                border: "1px solid black",
-              }}
-            />
-          ))
-        )}
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            setRunning(!running);
-            if (!running) {
-              runRef.current = true;
-              runSimulation();
-            } else {
-              runRef.current = false
-            }
-          }}
-        >
-          {running ? "stop" : "start"}
-        </button>
-        <button
-          onClick={() => {
-            setGrid(() => {
-              const rows = [];
-              for (let i = 0; i < numRows; i++) {
-                rows.push(Array.from(Array(numCols), () => 0));
-              }
-              return rows;
-            });
-            setRunning(false);
-          }}
-        >
-          clear
-        </button>
-        <button
-          onClick={() => {
-            setGrid(() => {
-              const rows = [];
-              for (let i = 0; i < numRows; i++) {
-                rows.push(
-                  Array.from(Array(numCols), () =>
-                    Math.floor(Math.random() * Math.floor(2))
-                  )
-                );
-              }
-              return rows;
-            });
-            setRunning(false);
-          }}
-        >
-          randomize
-        </button>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -194,6 +177,32 @@ const App = () => {
           />
         </label>
         <SketchPicker color={color} onChange={handleChangeComplete} />
+      </div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${numCols}, 20px)`,
+        }}
+      >
+        {grid.map((rows, i) =>
+          rows.map((cols, j) => (
+            <div
+              onClick={() => {
+                const newGrid = produce(grid, (gridCopy) => {
+                  gridCopy[i][j] = gridCopy[i][j] ? 0 : 1;
+                });
+
+                setGrid(newGrid);
+              }}
+              style={{
+                width: 20,
+                height: 20,
+                backgroundColor: grid[i][j] ? color : undefined,
+                border: "1px solid black",
+              }}
+            />
+          ))
+        )}
       </div>
     </div>
   );
