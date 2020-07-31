@@ -14,8 +14,7 @@ export default function Game() {
 
   const Button = styled.a`
     color: ${color};
-    border: "solid 2px";
-    border-color: ${color};
+    border: solid 2px ${color};
     &:hover {
       color: white;
       background: ${color};

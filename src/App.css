@@ -75,7 +75,6 @@ input[type="submit"]:hover {
 
 .btn-dark,
 input[type="submit"] {
-  border: solid 2px #1f1f1f;
   background: transparent;
   color: #1f1f1f;
 }
