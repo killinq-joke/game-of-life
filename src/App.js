@@ -1,19 +1,16 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import Game from "./Game"
+import Game from "./Game";
 import Rules from "./Rules";
 
 const App = () => {
-   return (
+  return (
     <>
       <Switch>
-
-      <Route exact path="/" component={Game} />
-      <Route path="/rules" component={Rules} />
+        <Route exact path="/" component={Game} />
+        <Route path="/rules" component={Rules} />
       </Switch>
-    
-     
     </>
   );
 };
