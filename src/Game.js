@@ -139,20 +139,7 @@ export default function Game() {
           </Button>
         </div>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setNumRows(newRows);
-            setNumCols(newCols);
-            setGrid(() => {
-              const rows = [];
-              for (let i = 0; i < newRows; i++) {
-                rows.push(Array.from(Array(newCols), () => 0));
-              }
-              return rows;
-            });
-          }}
-        >
+        <form>
           <label>
             <p>Rows</p>
 
@@ -176,7 +163,23 @@ export default function Game() {
             />
           </label>
 
-          <Button className="btn btn-dark btn-lil">submit</Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              setNumRows(newRows);
+              setNumCols(newCols);
+              setGrid(() => {
+                const rows = [];
+                for (let i = 0; i < newRows; i++) {
+                  rows.push(Array.from(Array(newCols), () => 0));
+                }
+                return rows;
+              });
+            }}
+            className="btn btn-dark btn-lil"
+          >
+            submit
+          </Button>
         </form>
         {/* <label>
           speed
