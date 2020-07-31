@@ -139,7 +139,6 @@ const App = () => {
               console.log(rows);
               return rows;
             });
-            setRunning(!running);
           }}
         >
           <label>
