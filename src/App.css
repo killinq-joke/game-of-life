@@ -93,3 +93,23 @@ input[type="submit"]:hover,
 .btn-color:hover {
   color: #fff;
 }
+
+a {
+  text-decoration: none;
+}
+
+@keyframes rulesAnim {
+  0% {
+    color: "black";
+  }
+  30% {
+    color: "red";
+  }
+  68%,
+  72% {
+    color: "blue";
+  }
+  100% {
+    color: "pink";
+  }
+}

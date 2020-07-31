@@ -1,7 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 export default function Rules() {
+  const hover = keyframes`
+    from {
+      background: black;
+      color: white
+    }
+
+    to {
+      background: red;
+      color: white
+    }
+  `;
+  const Button = styled.a`
+    &:hover {
+      animation: ${hover} 2s linear infinite;
+      color: white;
+    }
+  `;
   return (
     <div
       style={{
@@ -12,8 +30,8 @@ export default function Rules() {
         minHeight: "100vh",
       }}
     >
-      <Link className="btn btn-dark" to="/">
-        PLAY
+      <Link to="/">
+        <Button className="btn btn-dark">PLAY</Button>
       </Link>
       <h3>Here are the rules of THE GAME OF LIFE</h3>
       <ol>

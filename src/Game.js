@@ -12,8 +12,8 @@ export default function Game() {
   const [speed, setSpeed] = useState(1);
   const [color, setColor] = useState("black");
 
-  const Button = styled.div`
-    color: ${color}; 
+  const Button = styled.a`
+    color: ${color};
     border: "solid 2px";
     border-color: ${color};
     &:hover {
@@ -188,9 +188,9 @@ export default function Game() {
           />
         </label> */}
         <CirclePicker color={color} onChange={handleChangeComplete} />
-        <Button className="btn btn-dark">
-          <Link to="/rules">Rules</Link>
-        </Button>
+        <Link to="/rules">
+          <Button className="btn btn-dark">Rules</Button>
+        </Link>
       </nav>
       <div
         style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}
