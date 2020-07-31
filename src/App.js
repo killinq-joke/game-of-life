@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import { produce } from "immer";
 import { CirclePicker } from "react-color";
@@ -70,12 +71,12 @@ const App = () => {
 
   return (
     <div>
-      <div
+      <nav
         style={{
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "center",
-          marginTop: 20
+          marginTop: 20,
         }}
       >
         <div>
@@ -96,7 +97,7 @@ const App = () => {
             onClick={() => {
               setGrid(() => {
                 const rows = [];
-                for(let i = 0; i < numRows; i++) {
+                for (let i = 0; i < numRows; i++) {
                   rows.push(Array.from(Array(numCols), () => 0));
                 }
                 return rows;
@@ -136,7 +137,6 @@ const App = () => {
               for (let i = 0; i < newRows; i++) {
                 rows.push(Array.from(Array(newCols), () => 0));
               }
-              console.log(rows);
               return rows;
             });
           }}
@@ -147,7 +147,6 @@ const App = () => {
             <input
               type="number"
               onChange={(e) => {
-                console.log(e.target.value);
                 setNewRows(Number(e.target.value));
               }}
               value={newRows}
@@ -159,7 +158,6 @@ const App = () => {
             <input
               type="number"
               onChange={(e) => {
-                console.log(e.target.value);
                 setNewCols(Number(e.target.value));
               }}
               value={newCols}
@@ -177,36 +175,38 @@ const App = () => {
           />
         </label> */}
         <CirclePicker color={color} onChange={handleChangeComplete} />
-      </div>
-      <div style={{display: "flex", justifyContent: "center", margin: "20px 0"}}>
-        <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${numCols}, 20px)`,
-        }}
+        <Link>Rules</Link>
+      </nav>
+      <div
+        style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}
       >
-        {grid.map((rows, i) =>
-          rows.map((cols, j) => (
-            <div
-              onClick={() => {
-                const newGrid = produce(grid, (gridCopy) => {
-                  gridCopy[i][j] = gridCopy[i][j] ? 0 : 1;
-                });
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${numCols}, 20px)`,
+          }}
+        >
+          {grid.map((rows, i) =>
+            rows.map((cols, j) => (
+              <div
+                onClick={() => {
+                  const newGrid = produce(grid, (gridCopy) => {
+                    gridCopy[i][j] = gridCopy[i][j] ? 0 : 1;
+                  });
 
-                setGrid(newGrid);
-              }}
-              style={{
-                width: 20,
-                height: 20,
-                backgroundColor: grid[i][j] ? color : undefined,
-                border: "1px solid black",
-              }}
-            />
-          ))
-        )}
+                  setGrid(newGrid);
+                }}
+                style={{
+                  width: 20,
+                  height: 20,
+                  backgroundColor: grid[i][j] ? color : undefined,
+                  border: "1px solid black",
+                }}
+              />
+            ))
+          )}
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };
