@@ -3,11 +3,21 @@ import { Link } from "react-router-dom";
 
 export default function Rules() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-      <Link to="/">PLAY</Link>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <Link className="btn btn-dark" to="/">
+        PLAY
+      </Link>
       <h3>Here are the rules of THE GAME OF LIFE</h3>
       <ol>
-         <li>
+        <li>
           Any live cell with fewer than two live neighbours dies, as if by
           underpopulation.
         </li>
@@ -22,9 +32,8 @@ export default function Rules() {
         <li>
           Any dead cell with exactly three live neighbours becomes a live cell,
           as if by reproduction.
-        </li> 
+        </li>
       </ol>
-        
     </div>
   );
 }

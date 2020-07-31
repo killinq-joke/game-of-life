@@ -80,6 +80,7 @@ export default function Game() {
       >
         <div>
           <button
+            className="btn btn-dark"
             onClick={() => {
               setRunning(!running);
               if (!running) {
@@ -93,6 +94,7 @@ export default function Game() {
             {running ? "stop" : "start"}
           </button>
           <button
+            className="btn btn-dark"
             onClick={() => {
               setGrid(() => {
                 const rows = [];
@@ -107,6 +109,7 @@ export default function Game() {
             clear
           </button>
           <button
+            className="btn btn-dark"
             onClick={() => {
               setGrid(() => {
                 const rows = [];
@@ -174,7 +177,9 @@ export default function Game() {
           />
         </label> */}
         <CirclePicker color={color} onChange={handleChangeComplete} />
-        <Link to="/rules">Rules</Link>
+        <Link className="btn btn-dark" to="/rules">
+          Rules
+        </Link>
       </nav>
       <div
         style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}
