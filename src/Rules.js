@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Rules() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center" }}>
       <Link to="/">PLAY</Link>
       <h3>Here are the rules of THE GAME OF LIFE</h3>
       <ol>

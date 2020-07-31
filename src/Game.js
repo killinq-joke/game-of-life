@@ -199,7 +199,7 @@ export default function Game() {
                   width: 20,
                   height: 20,
                   backgroundColor: grid[i][j] ? color : undefined,
-                  border: "1px solid black",
+                  border: `1px solid ${color}`,
                 }}
               />
             ))
