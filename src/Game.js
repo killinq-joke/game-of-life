@@ -166,7 +166,12 @@ export default function Game() {
             />
           </label>
 
-          <button>submit</button>
+          <button
+            className="btn btn-dark btn-lil"
+            style={{ color: color, border: `solid 2px ${color}` }}
+          >
+            submit
+          </button>
         </form>
         {/* <label>
           speed
