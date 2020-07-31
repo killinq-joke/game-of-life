@@ -79,13 +79,13 @@ input[type="submit"] {
   background: transparent;
   color: #1f1f1f;
 }
-.btn-dark:hover,
+/* .btn-dark:hover,
 input[type="submit"]:hover,
 .btn-dark.active {
   border: solid 2px #1f1f1f;
   background: #1f1f1f;
   color: #fff;
-}
+} */
 
 .btn-color {
   background: transparent;

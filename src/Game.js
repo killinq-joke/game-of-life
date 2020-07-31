@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { produce } from "immer";
 import { CirclePicker } from "react-color";
@@ -10,6 +11,16 @@ export default function Game() {
   const [newCols, setNewCols] = useState(50);
   const [speed, setSpeed] = useState(1);
   const [color, setColor] = useState("black");
+
+  const Button = styled.div`
+    color: ${color}; 
+    border: "solid 2px";
+    border-color: ${color};
+    &:hover {
+      color: white;
+      background: ${color};
+    }
+  `;
 
   const handleChangeComplete = (color) => {
     setColor(color.hex);
@@ -79,7 +90,7 @@ export default function Game() {
         }}
       >
         <div>
-          <button
+          <Button
             className="btn btn-dark"
             onClick={() => {
               setRunning(!running);
@@ -92,8 +103,8 @@ export default function Game() {
             }}
           >
             {running ? "stop" : "start"}
-          </button>
-          <button
+          </Button>
+          <Button
             className="btn btn-dark"
             onClick={() => {
               setGrid(() => {
@@ -107,8 +118,8 @@ export default function Game() {
             }}
           >
             clear
-          </button>
-          <button
+          </Button>
+          <Button
             className="btn btn-dark"
             onClick={() => {
               setGrid(() => {
@@ -126,7 +137,7 @@ export default function Game() {
             }}
           >
             randomize
-          </button>
+          </Button>
         </div>
 
         <form
@@ -166,12 +177,7 @@ export default function Game() {
             />
           </label>
 
-          <button
-            className="btn btn-dark btn-lil"
-            style={{ color: color, border: `solid 2px ${color}` }}
-          >
-            submit
-          </button>
+          <Button className="btn btn-dark btn-lil">submit</Button>
         </form>
         {/* <label>
           speed
@@ -182,9 +188,9 @@ export default function Game() {
           />
         </label> */}
         <CirclePicker color={color} onChange={handleChangeComplete} />
-        <Link className="btn btn-dark" to="/rules">
-          Rules
-        </Link>
+        <Button className="btn btn-dark">
+          <Link to="/rules">Rules</Link>
+        </Button>
       </nav>
       <div
         style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}
